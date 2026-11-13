@@ -60,9 +60,9 @@ let consoleSpend = { lookupUsd: 0, generationUsd: 0, baselineUsd: 0 };
 // Callers pass only the fixed relative data URLs below (compile-time
 // literals); loadJson never sees user input.
 async function loadJson(url: string): Promise<unknown> {
-  // nosemgrep: github.no-unsafe-url-fetch -- url is always one of the five fixed
-  // ./data/ literals at the call sites below; no user-built strings.
-  const res = await fetch(url);
+  // nosemgrep: github.no-unsafe-url-fetch -- callers pass only the five
+  // fixed ./data/ literals below; no user-built strings reach this fetch.
+  const res = await fetch(url); // nosemgrep: github.no-unsafe-url-fetch
   if (!res.ok) throw new Error(`fetch ${url}: ${res.status}`);
   return res.json();
 }
