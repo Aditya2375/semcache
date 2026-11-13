@@ -1,0 +1,13 @@
+title = "semcache gitleaks config"
+
+# The vendored, minified ONNX Runtime web bundle (docs/worker.js) and its
+# wasm companions (docs/ort/) contain long high-entropy identifiers that trip
+# the generic-api-key rule. One verified instance: the tokenizer special-token
+# name "unk_token" on worker.js line 13. These are third-party build artifacts
+# (see docs/ort/VERSION), not credentials.
+[allowlist]
+description = "vendored ONNX runtime artifacts"
+paths = [
+  '''docs/worker\.js''',
+  '''docs/ort/''',
+]

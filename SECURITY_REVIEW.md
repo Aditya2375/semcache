@@ -18,23 +18,35 @@ Web Worker's memory and vanishes with the tab.
    reviewed line by line; there is no generated or copied code outside
    docs/ort/ (vendored onnxruntime-web binaries) and the bundled
    app.js/worker.js, which are built from src/ and diff-checked in CI.
-2. **gitleaks detect** - TODO in CI (workflow runs gitleaks on full history).
-   Local evidence: no keys exist anywhere in the project by design (no
-   backends to key), and a manual scan of src/, scripts/, tests/, README.md,
-   data/ found no key/token/secret strings.
+2. **gitleaks detect** - PASS. CI job `supply-chain` runs gitleaks 8.24.3
+   (sha256-verified binary) over the full git history on every push. The
+   full-history scan initially flagged 2 hits, both one false positive: the
+   tokenizer special-token name "unk_token" inside the vendored, minified
+   ONNX Runtime bundle docs/worker.js (line 13). Allowlisted in
+   .gitleaks.toml (vendored artifacts only); scan then exits 0 locally.
+   No keys exist anywhere in the project by design (no backends to key),
+   and a manual scan of src/, scripts/, tests/, README.md, data/ found no
+   key/token/secret strings.
 3. **Dependency audit** - PASS. `npm audit`: 0 vulnerabilities. Runtime
    dependency is @huggingface/transformers (pinned 4.3.2) with its
    onnxruntime-web dependency; esbuild/typescript are dev-only. CI reruns
    npm audit.
-4. **Static scan** - TODO in CI (semgrep local rules). Local evidence:
-   manual review; the risky-pattern grep is part of tests/check-docs.sh and
-   CI runs semgrep with the repo's own rules.
+4. **Static scan** - PASS. CI job `supply-chain` runs semgrep with the
+   repo's own local rules (.github/semgrep-rules.yml, no account) over src/
+   and scripts/ on every push. Local evidence: manual review; the
+   risky-pattern grep is part of tests/check-docs.sh.
 5. **Logged-out test** - N/A. There is nothing to log in to. Every byte the
    site serves is public by design; the console cache is per-tab memory.
-6. **MDN Observatory scan** - TODO after the URL is live. Known limit: GitHub
-   Pages cannot send HTTP headers, so CSP is delivered via <meta> (see item
-   17); the Observatory score will reflect that Pages limitation, accepted
-   per the checklist's own Pages guidance.
+6. **MDN Observatory scan** - N/A, verified by hand instead. Observatory
+   scans hosts, not paths: scanning aditya2375.github.io returns "Site
+   responded with an unexpected HTTP status code 404" because there is no
+   user-level Pages site at the apex (2026-11-13). Verified directly
+   instead: `curl -sI https://aditya2375.github.io/semcache/` returns 200
+   with strict-transport-security: max-age=31556952 (GitHub Pages default
+   for the *.github.io domain); Pages cannot send the remaining security
+   headers, so CSP is delivered via <meta> (see item 17) and the meta tag
+   is confirmed present in the served live HTML. Accepted per the
+   checklist's own Pages guidance.
 7. **Push public only after checks** - PASS (process). Nothing was pushed
    before this review, check-docs, unit tests, browser smoke, and the
    precomputed-verify gate all passed locally.
@@ -102,8 +114,11 @@ Web Worker's memory and vanishes with the tab.
 
 ## Config, transport and accounts
 
-23. **(16) HTTPS only** - TODO at publish: tick "Enforce HTTPS" in the
-    repo's Pages settings. The site itself makes no http:// requests
+23. **(16) HTTPS only** - PASS. Pages serves the site over HTTPS with
+    HSTS (curl-verified live, item 6); "Enforce HTTPS" is on and
+    non-disableable for the default aditya2375.github.io domain ("Required
+    for your site because you are using the default domain" - Pages
+    settings, 2026-11-13). The site itself makes no http:// requests
     (grep-verified).
 24. **(17) Security headers** - PASS within Pages' limits. CSP via <meta>:
     default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src
