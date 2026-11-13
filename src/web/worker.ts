@@ -131,8 +131,15 @@ interface QueryTrace {
   detail: string;
 }
 
+let progressPoster: ((fraction: number) => void) | null = null;
+
 async function doQuery(text: string, spec: PolicySpec): Promise<Record<string, unknown>> {
   const b = await doInit();
+  // A query outside the bundled artifact needs the live model; start its
+  // download here so progress reaches the page instead of a silent stall.
+  if (!b.embedder.has(text) && !liveEmbedder.loaded) {
+    await liveEmbedder.load((f) => progressPoster?.(f));
+  }
   const policy = makePolicy(spec, b.weights);
   if (!consoleCache) {
     consoleCache = new SemanticCache<CachedValue>({ embedder: composite, policy, maxEntries: 2000 });
@@ -253,6 +260,9 @@ self.onmessage = async (ev: MessageEvent<RpcRequest>) => {
   const reply = (ok: boolean, payload: unknown) => {
     (self as unknown as Worker).postMessage(ok ? { id: req.id, ok, result: payload } : { id: req.id, ok, error: String(payload) });
   };
+  progressPoster = (fraction) => {
+    (self as unknown as Worker).postMessage({ id: req.id, ok: true, progress: fraction });
+  };
   try {
     switch (req.kind) {
       case 'init': {
@@ -286,5 +296,7 @@ self.onmessage = async (ev: MessageEvent<RpcRequest>) => {
     }
   } catch (err) {
     reply(false, err instanceof Error ? err.message : err);
+  } finally {
+    progressPoster = null;
   }
 };

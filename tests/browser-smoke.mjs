@@ -162,6 +162,22 @@ const method = await evaluate(`(() => {
 })()`);
 check('method tab states the serving rule and honest limits', method.includes('serve cached') && method.includes('Known limits') && method.includes('simulated'));
 
+// Live model: a custom query absent from the precomputed artifact must
+// download the pinned model and embed it locally (CSP must allow the wasm).
+await evaluate(`(() => {
+  document.querySelector('.tab[data-tab="console"]').click();
+  const i = document.getElementById('query-input');
+  i.value = 'What does NimbusDB cost per month for a small team?';
+  document.getElementById('query-form').dispatchEvent(new Event('submit', { cancelable: true }));
+})()`);
+await waitFor(() => evaluate(`!document.getElementById('query-submit').disabled`), 'live-model answer', 150000);
+const live = await evaluate(`({
+  verdict: document.querySelector('#decision-card .verdict-kind')?.textContent ?? '',
+  src: document.querySelector('#decision-card .answer-src')?.textContent ?? '',
+  status: document.getElementById('model-status')?.textContent ?? '',
+})`);
+check('custom query embeds with the live pinned model', live.src.includes('Xenova/bge-small-en-v1.5@ea104dac'), JSON.stringify(live).slice(0, 160));
+
 // XSS: query text must never become markup (guard path needs no live model).
 await evaluate(`(() => {
   document.querySelector('.tab[data-tab="console"]').click();

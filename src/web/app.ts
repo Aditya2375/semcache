@@ -131,11 +131,19 @@ queryForm.addEventListener('submit', (ev) => {
   if (text.length === 0) return;
   querySubmit.disabled = true;
   const select = el<HTMLSelectElement>('policy-select');
+  modelStatus.hidden = false;
+  modelStatus.textContent = 'embedding model: checking bundle';
   client
-    .call<QueryResult>('query', { text, policy: policyFromSelect(select) })
+    .call<QueryResult>('query', { text, policy: policyFromSelect(select) }, (f) => {
+      modelStatus.hidden = false;
+      modelStatus.textContent = `downloading embedding model: ${(f * 100).toFixed(0)}%`;
+    })
     .then((r) => renderDecision(r))
     .catch((err: Error) => renderError(err))
-    .finally(() => (querySubmit.disabled = false));
+    .finally(() => {
+      querySubmit.disabled = false;
+      modelStatus.hidden = true;
+    });
 });
 
 function renderError(err: Error): void {
