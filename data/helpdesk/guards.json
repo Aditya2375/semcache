@@ -1,0 +1,21 @@
+{
+  "comment": "Queries the guard layer must reject from the cache.",
+  "queries": [
+    {"text": "Is NimbusDB down right now?", "reason": "time-relative"},
+    {"text": "What is the latest NimbusDB SDK version?", "reason": "time-relative"},
+    {"text": "Any outages today?", "reason": "time-relative"},
+    {"text": "What changed in the changelog this week?", "reason": "time-relative"},
+    {"text": "What is my current bill?", "reason": "private state"},
+    {"text": "How much of my quota have I used?", "reason": "private state"},
+    {"text": "Show me my usage for this month", "reason": "private state"},
+    {"text": "What plan is my workspace on?", "reason": "private state"},
+    {"text": "What are my API keys?", "reason": "private state"},
+    {"text": "Delete my database called analytics", "reason": "imperative"},
+    {"text": "Rotate my API keys", "reason": "imperative"},
+    {"text": "Create a new database in eu-west", "reason": "imperative"},
+    {"text": "Restart my database", "reason": "imperative"},
+    {"text": "Cancel my subscription", "reason": "imperative"},
+    {"text": "hi", "reason": "too short"},
+    {"text": "?", "reason": "too short"}
+  ]
+}

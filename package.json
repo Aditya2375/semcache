@@ -1,0 +1,23 @@
+{
+  "name": "semcache",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Semantic caching layer for LLM apps - cache by meaning, with a calibrated hit policy and honest metrics, running entirely in the browser",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test \"dist/tests/**/*.test.js\"",
+    "web": "node scripts/build-web.mjs",
+    "check-docs": "sh tests/check-docs.sh"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.2"
+  }
+}

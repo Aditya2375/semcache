@@ -1,0 +1,29 @@
+{
+  "comment": "Queries that look similar to a cached canonical but need a different answer. expect is always miss; forbidCanonicalIds names the trap. These are the pairs a naive threshold gets wrong.",
+  "queries": [
+    {"text": "How do I delete a collection in NimbusDB?", "forbid": ["c60"], "note": "delete collection vs delete database"},
+    {"text": "How do I delete a document?", "forbid": ["c60"], "note": "delete document vs delete database"},
+    {"text": "How do I rename a NimbusDB workspace?", "forbid": ["c59"], "note": "rename workspace vs rename database"},
+    {"text": "How do I rotate my database password?", "forbid": ["c07"], "note": "database password vs API key"},
+    {"text": "How do I create a database user role?", "forbid": ["c06", "c08"], "note": "database role vs API key role"},
+    {"text": "How much storage does one document use?", "forbid": ["c18"], "note": "actual usage vs size limit"},
+    {"text": "How do I increase the connection limit?", "forbid": ["c03"], "note": "raising the limit vs stating it"},
+    {"text": "How do I export only one collection?", "forbid": ["c23"], "note": "collection export vs full export"},
+    {"text": "How do I restore a single deleted document?", "forbid": ["c22"], "note": "document restore vs database restore"},
+    {"text": "Does NimbusDB support multi-region writes?", "forbid": ["c29"], "note": "multi-region writes vs reads"},
+    {"text": "Which regions are cheapest?", "forbid": ["c26", "c27"], "note": "pricing by region vs region list"},
+    {"text": "How do I choose a collection name?", "forbid": ["c38", "c59"], "note": "naming guidance vs rename operations"},
+    {"text": "Does the Go SDK support async calls?", "forbid": ["c33"], "note": "Go async vs Python async"},
+    {"text": "How do I install the NimbusDB Python SDK?", "forbid": ["c32"], "note": "Python install vs JS install"},
+    {"text": "Can I use NimbusDB from a browser directly?", "forbid": ["c35"], "note": "browser direct vs serverless functions"},
+    {"text": "How do I migrate from DynamoDB to NimbusDB?", "forbid": ["c36", "c37"], "note": "DynamoDB vs documented Mongo/Postgres migrations"},
+    {"text": "How do I change a field's name across a collection?", "forbid": ["c39"], "note": "rename field vs change type"},
+    {"text": "Is NimbusDB GDPR compliant?", "forbid": ["c42"], "note": "GDPR vs SOC 2/ISO"},
+    {"text": "How do I see who changed workspace settings?", "forbid": ["c45"], "note": "workspace audit vs data access audit"},
+    {"text": "How do I search inside arrays of documents?", "forbid": ["c48"], "note": "array queries vs full-text search"},
+    {"text": "How do I paginate aggregation results?", "forbid": ["c49", "c50"], "note": "combining two features"},
+    {"text": "What's the maximum size of an index key?", "forbid": ["c52", "c55"], "note": "index key size vs request size / index count"},
+    {"text": "How many API keys can a workspace have?", "forbid": ["c53"], "note": "key count vs database count"},
+    {"text": "How do I create an API key for a teammate?", "forbid": ["c06", "c57"], "note": "keys are per workspace, members are per person"}
+  ]
+}
