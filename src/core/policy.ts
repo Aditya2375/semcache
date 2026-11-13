@@ -94,17 +94,25 @@ export function sigmoid(x: number): number {
 }
 
 export function calibratedP(weights: CalibrationWeights, ctx: PolicyContext): number {
-  const margin = ctx.sim2 === null ? 1 : ctx.sim1 - ctx.sim2;
-  const feats: [number, number, number, number] = [
+  // A cache with a single entry has no runner-up, so the margin feature is
+  // unobserved. Impute the training mean (zero standardized contribution)
+  // rather than an extreme value: an uncontested nearest neighbour is no
+  // evidence for or against correctness, and the fitted coefficient - which
+  // may be negative on hard-negative-heavy workloads - must not get to
+  // vote on a feature it never saw during fitting.
+  const margin = ctx.sim2 === null ? null : Math.min(1, Math.max(0, ctx.sim1 - ctx.sim2));
+  const feats: [number, number | null, number, number] = [
     ctx.sim1,
-    Math.min(1, Math.max(0, margin)),
+    margin,
     Math.log1p(ctx.cacheSize),
     ctx.queryTokens,
   ];
   let z = weights.bias;
   for (let i = 0; i < 4; i++) {
+    const f = feats[i]!;
+    if (f === null) continue;
     const std = weights.stds[i]! < 1e-9 ? 1 : weights.stds[i]!;
-    z += weights.coef[i]! * ((feats[i]! - weights.means[i]!) / std);
+    z += weights.coef[i]! * ((f - weights.means[i]!) / std);
   }
   return sigmoid(z);
 }

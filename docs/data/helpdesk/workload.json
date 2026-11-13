@@ -1,0 +1,1765 @@
+{
+  "version": 1,
+  "comment": "Labeled replay workload for the NimbusDB helpdesk simulation. Assembled by scripts/gen-data.mjs from hand-authored seeds; regenerate with `node scripts/gen-data.mjs`.",
+  "queries": [
+    {
+      "id": "q001",
+      "text": "Does NimbusDB limit index count per collection?",
+      "expect": "miss",
+      "answerCanonicalId": "c55",
+      "note": "first ask"
+    },
+    {
+      "id": "q002",
+      "text": "How do I rename a NimbusDB database?",
+      "expect": "miss",
+      "answerCanonicalId": "c59",
+      "note": "first ask"
+    },
+    {
+      "id": "q003",
+      "text": "What connection string format does NimbusDB use?",
+      "expect": "miss",
+      "answerCanonicalId": "c02",
+      "note": "first ask"
+    },
+    {
+      "id": "q004",
+      "text": "What changed in the changelog this week?",
+      "expect": "guard",
+      "note": "time-relative"
+    },
+    {
+      "id": "q005",
+      "text": "What is the maximum document size in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c18",
+      "note": "first ask"
+    },
+    {
+      "id": "q006",
+      "text": "Can NimbusDB do aggregations like group by?",
+      "expect": "miss",
+      "answerCanonicalId": "c50",
+      "note": "first ask"
+    },
+    {
+      "id": "q007",
+      "text": "How do I migrate from MongoDB to NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c36",
+      "note": "first ask"
+    },
+    {
+      "id": "q008",
+      "text": "How do I restore a NimbusDB database to a point in time?",
+      "expect": "miss",
+      "answerCanonicalId": "c22",
+      "note": "first ask"
+    },
+    {
+      "id": "q009",
+      "text": "How many concurrent connections does NimbusDB allow?",
+      "expect": "miss",
+      "answerCanonicalId": "c03",
+      "note": "first ask"
+    },
+    {
+      "id": "q010",
+      "text": "Does NimbusDB offer multi-region reads?",
+      "expect": "miss",
+      "answerCanonicalId": "c29",
+      "note": "first ask"
+    },
+    {
+      "id": "q011",
+      "text": "How long does NimbusDB retain deleted data?",
+      "expect": "miss",
+      "answerCanonicalId": "c24",
+      "note": "first ask"
+    },
+    {
+      "id": "q012",
+      "text": "Show me my usage for this month",
+      "expect": "guard",
+      "note": "private state"
+    },
+    {
+      "id": "q013",
+      "text": "Can I use NimbusDB from serverless functions?",
+      "expect": "miss",
+      "answerCanonicalId": "c35",
+      "note": "first ask"
+    },
+    {
+      "id": "q014",
+      "text": "How does NimbusDB scale under load?",
+      "expect": "miss",
+      "answerCanonicalId": "c16",
+      "note": "first ask"
+    },
+    {
+      "id": "q015",
+      "text": "How do indexes work in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c47",
+      "note": "first ask"
+    },
+    {
+      "id": "q016",
+      "text": "How do I change a field type across a collection?",
+      "expect": "miss",
+      "answerCanonicalId": "c39",
+      "note": "first ask"
+    },
+    {
+      "id": "q017",
+      "text": "Does NimbusDB support cross-region backup replication?",
+      "expect": "miss",
+      "answerCanonicalId": "c25",
+      "note": "first ask"
+    },
+    {
+      "id": "q018",
+      "text": "Does the NimbusDB Python SDK support async?",
+      "expect": "miss",
+      "answerCanonicalId": "c33",
+      "note": "first ask"
+    },
+    {
+      "id": "q019",
+      "text": "How much of my quota have I used?",
+      "expect": "guard",
+      "note": "private state"
+    },
+    {
+      "id": "q020",
+      "text": "What consistency does NimbusDB guarantee within a region?",
+      "expect": "miss",
+      "answerCanonicalId": "c30",
+      "note": "first ask"
+    },
+    {
+      "id": "q021",
+      "text": "Why does my NimbusDB connection time out?",
+      "expect": "miss",
+      "answerCanonicalId": "c05",
+      "note": "first ask"
+    },
+    {
+      "id": "q022",
+      "text": "Does NimbusDB throttle requests?",
+      "expect": "miss",
+      "answerCanonicalId": "c20",
+      "note": "first ask"
+    },
+    {
+      "id": "q023",
+      "text": "What are my API keys?",
+      "expect": "guard",
+      "note": "private state"
+    },
+    {
+      "id": "q024",
+      "text": "How do backups work in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c21",
+      "note": "first ask"
+    },
+    {
+      "id": "q025",
+      "text": "How many databases can a NimbusDB workspace have?",
+      "expect": "miss",
+      "answerCanonicalId": "c53",
+      "note": "first ask"
+    },
+    {
+      "id": "q026",
+      "text": "How many collections can a NimbusDB database have?",
+      "expect": "miss",
+      "answerCanonicalId": "c19",
+      "note": "first ask"
+    },
+    {
+      "id": "q027",
+      "text": "Does NimbusDB support single sign-on?",
+      "expect": "miss",
+      "answerCanonicalId": "c09",
+      "note": "first ask"
+    },
+    {
+      "id": "q028",
+      "text": "Does NimbusDB have SOC 2 compliance?",
+      "expect": "miss",
+      "answerCanonicalId": "c42",
+      "note": "first ask"
+    },
+    {
+      "id": "q029",
+      "text": "How do I restrict NimbusDB access by IP address?",
+      "expect": "miss",
+      "answerCanonicalId": "c43",
+      "note": "first ask"
+    },
+    {
+      "id": "q030",
+      "text": "How do I create a database in the NimbusDB console?",
+      "expect": "miss",
+      "answerCanonicalId": "c56",
+      "note": "first ask"
+    },
+    {
+      "id": "q031",
+      "text": "Which regions is NimbusDB available in?",
+      "expect": "miss",
+      "answerCanonicalId": "c26",
+      "note": "first ask"
+    },
+    {
+      "id": "q032",
+      "text": "Does NimbusDB support connection pooling?",
+      "expect": "miss",
+      "answerCanonicalId": "c04",
+      "note": "first ask"
+    },
+    {
+      "id": "q033",
+      "text": "How do I create an API key in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c06",
+      "note": "first ask"
+    },
+    {
+      "id": "q034",
+      "text": "How do retries work in NimbusDB SDKs?",
+      "expect": "miss",
+      "answerCanonicalId": "c34",
+      "note": "first ask"
+    },
+    {
+      "id": "q035",
+      "text": "Does NimbusDB support full-text search?",
+      "expect": "miss",
+      "answerCanonicalId": "c48",
+      "note": "first ask"
+    },
+    {
+      "id": "q036",
+      "text": "Does NimbusDB charge for idle databases?",
+      "expect": "miss",
+      "answerCanonicalId": "c15",
+      "note": "first ask"
+    },
+    {
+      "id": "q037",
+      "text": "How do I estimate my monthly NimbusDB cost?",
+      "expect": "miss",
+      "answerCanonicalId": "c13",
+      "note": "first ask"
+    },
+    {
+      "id": "q038",
+      "text": "Can I move a NimbusDB database to another region?",
+      "expect": "miss",
+      "answerCanonicalId": "c28",
+      "note": "first ask"
+    },
+    {
+      "id": "q039",
+      "text": "What is included in the NimbusDB free tier?",
+      "expect": "miss",
+      "answerCanonicalId": "c12",
+      "note": "first ask"
+    },
+    {
+      "id": "q040",
+      "text": "Which languages have official NimbusDB SDKs?",
+      "expect": "miss",
+      "answerCanonicalId": "c31",
+      "note": "first ask"
+    },
+    {
+      "id": "q041",
+      "text": "How do I install the NimbusDB JavaScript SDK?",
+      "expect": "miss",
+      "answerCanonicalId": "c32",
+      "note": "first ask"
+    },
+    {
+      "id": "q042",
+      "text": "How do I revoke a compromised API key?",
+      "expect": "miss",
+      "answerCanonicalId": "c10",
+      "note": "first ask"
+    },
+    {
+      "id": "q043",
+      "text": "How do I audit who accessed my NimbusDB data?",
+      "expect": "miss",
+      "answerCanonicalId": "c45",
+      "note": "first ask"
+    },
+    {
+      "id": "q044",
+      "text": "How do I connect to a NimbusDB database?",
+      "expect": "miss",
+      "answerCanonicalId": "c01",
+      "note": "first ask"
+    },
+    {
+      "id": "q045",
+      "text": "How do I choose a region for my NimbusDB database?",
+      "expect": "miss",
+      "answerCanonicalId": "c27",
+      "note": "first ask"
+    },
+    {
+      "id": "q046",
+      "text": "What is the maximum request size in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c52",
+      "note": "first ask"
+    },
+    {
+      "id": "q047",
+      "text": "What are the storage limits of a NimbusDB database?",
+      "expect": "miss",
+      "answerCanonicalId": "c17",
+      "note": "first ask"
+    },
+    {
+      "id": "q048",
+      "text": "Does NimbusDB support zero-downtime schema changes?",
+      "expect": "miss",
+      "answerCanonicalId": "c40",
+      "note": "first ask"
+    },
+    {
+      "id": "q049",
+      "text": "Can I export my NimbusDB data?",
+      "expect": "miss",
+      "answerCanonicalId": "c23",
+      "note": "first ask"
+    },
+    {
+      "id": "q050",
+      "text": "Restart my database",
+      "expect": "guard",
+      "note": "imperative"
+    },
+    {
+      "id": "q051",
+      "text": "How do I migrate from Postgres to NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c37",
+      "note": "first ask"
+    },
+    {
+      "id": "q052",
+      "text": "Where do I see slow queries in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c58",
+      "note": "first ask"
+    },
+    {
+      "id": "q053",
+      "text": "How does NimbusDB pricing work?",
+      "expect": "miss",
+      "answerCanonicalId": "c11",
+      "note": "first ask"
+    },
+    {
+      "id": "q054",
+      "text": "What are the NimbusDB rate limits?",
+      "expect": "miss",
+      "answerCanonicalId": "c51",
+      "note": "first ask"
+    },
+    {
+      "id": "q055",
+      "text": "What is the query timeout in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c54",
+      "note": "first ask"
+    },
+    {
+      "id": "q056",
+      "text": "Can I rename a collection in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c38",
+      "note": "first ask"
+    },
+    {
+      "id": "q057",
+      "text": "What roles can I assign to a NimbusDB API key?",
+      "expect": "miss",
+      "answerCanonicalId": "c08",
+      "note": "first ask"
+    },
+    {
+      "id": "q058",
+      "text": "How do I increase the connection limit?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c03"
+      ],
+      "note": "raising the limit vs stating it"
+    },
+    {
+      "id": "q059",
+      "text": "How do I restore a single deleted document?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c22"
+      ],
+      "note": "document restore vs database restore"
+    },
+    {
+      "id": "q060",
+      "text": "Create a new database in eu-west",
+      "expect": "guard",
+      "note": "imperative"
+    },
+    {
+      "id": "q061",
+      "text": "Is NimbusDB down right now?",
+      "expect": "guard",
+      "note": "time-relative"
+    },
+    {
+      "id": "q062",
+      "text": "How do I rotate an API key without downtime?",
+      "expect": "miss",
+      "answerCanonicalId": "c07",
+      "note": "first ask"
+    },
+    {
+      "id": "q063",
+      "text": "How do I paginate large result sets in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c49",
+      "note": "first ask"
+    },
+    {
+      "id": "q064",
+      "text": "How is data encrypted in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c41",
+      "note": "first ask"
+    },
+    {
+      "id": "q065",
+      "text": "How do I query documents in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c46",
+      "note": "first ask"
+    },
+    {
+      "id": "q066",
+      "text": "How do I invite a teammate to my NimbusDB workspace?",
+      "expect": "miss",
+      "answerCanonicalId": "c57",
+      "note": "first ask"
+    },
+    {
+      "id": "q067",
+      "text": "How do I delete a NimbusDB database?",
+      "expect": "miss",
+      "answerCanonicalId": "c60",
+      "note": "first ask"
+    },
+    {
+      "id": "q068",
+      "text": "Does NimbusDB support private networking?",
+      "expect": "miss",
+      "answerCanonicalId": "c44",
+      "note": "first ask"
+    },
+    {
+      "id": "q069",
+      "text": "When is a write unit charged in NimbusDB?",
+      "expect": "miss",
+      "answerCanonicalId": "c14",
+      "note": "first ask"
+    },
+    {
+      "id": "q070",
+      "text": "Does NimbusDB limit index count per collection?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q071",
+      "text": "How do I rename a NimbusDB database?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q072",
+      "text": "What does a NimbusDB connection string look like?",
+      "expect": "hit-semantic",
+      "canonicalId": "c02"
+    },
+    {
+      "id": "q073",
+      "text": "What's the document size limit in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c18"
+    },
+    {
+      "id": "q074",
+      "text": "Can I group and sum results in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c50"
+    },
+    {
+      "id": "q075",
+      "text": "Migrating off MongoDB onto NimbusDB - how?",
+      "expect": "hit-semantic",
+      "canonicalId": "c36"
+    },
+    {
+      "id": "q076",
+      "text": "How do I restore a NimbusDB database to a point in time?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q077",
+      "text": "?",
+      "expect": "guard",
+      "note": "too short"
+    },
+    {
+      "id": "q078",
+      "text": "How many concurrent connections does NimbusDB allow?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q079",
+      "text": "Can I read from multiple regions?",
+      "expect": "hit-semantic",
+      "canonicalId": "c29"
+    },
+    {
+      "id": "q080",
+      "text": "If I delete a database, how long until it's really gone?",
+      "expect": "hit-semantic",
+      "canonicalId": "c24"
+    },
+    {
+      "id": "q081",
+      "text": "Can I call NimbusDB from Lambda functions?",
+      "expect": "hit-semantic",
+      "canonicalId": "c35"
+    },
+    {
+      "id": "q082",
+      "text": "Does NimbusDB scale automatically?",
+      "expect": "hit-semantic",
+      "canonicalId": "c16"
+    },
+    {
+      "id": "q083",
+      "text": "How do I see who changed workspace settings?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c45"
+      ],
+      "note": "workspace audit vs data access audit"
+    },
+    {
+      "id": "q084",
+      "text": "How do indexes work in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q085",
+      "text": "How do I change a field's type for every document?",
+      "expect": "hit-semantic",
+      "canonicalId": "c39"
+    },
+    {
+      "id": "q086",
+      "text": "Does NimbusDB support cross-region backup replication?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q087",
+      "text": "Does the Python SDK work with asyncio?",
+      "expect": "hit-semantic",
+      "canonicalId": "c33"
+    },
+    {
+      "id": "q088",
+      "text": "What consistency does NimbusDB guarantee within a region?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q089",
+      "text": "Why can't I reach my database - it just times out",
+      "expect": "hit-semantic",
+      "canonicalId": "c05"
+    },
+    {
+      "id": "q090",
+      "text": "Does NimbusDB throttle requests?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q091",
+      "text": "How does NimbusDB handle backups?",
+      "expect": "hit-semantic",
+      "canonicalId": "c21"
+    },
+    {
+      "id": "q092",
+      "text": "How many databases can a NimbusDB workspace have?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q093",
+      "text": "How many collections can I create?",
+      "expect": "hit-semantic",
+      "canonicalId": "c19"
+    },
+    {
+      "id": "q094",
+      "text": "Does NimbusDB work with Okta or SAML?",
+      "expect": "hit-semantic",
+      "canonicalId": "c09"
+    },
+    {
+      "id": "q095",
+      "text": "Does NimbusDB have SOC 2 compliance?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q096",
+      "text": "How do I restrict NimbusDB access by IP address?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q097",
+      "text": "Where do I create a database in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c56"
+    },
+    {
+      "id": "q098",
+      "text": "Where is NimbusDB available geographically?",
+      "expect": "hit-semantic",
+      "canonicalId": "c26"
+    },
+    {
+      "id": "q099",
+      "text": "Does NimbusDB support connection pooling?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q100",
+      "text": "How do I delete a document?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c60"
+      ],
+      "note": "delete document vs delete database"
+    },
+    {
+      "id": "q101",
+      "text": "How do I create an API key in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q102",
+      "text": "How do retries work in NimbusDB SDKs?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q103",
+      "text": "How do I delete a collection in NimbusDB?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c60"
+      ],
+      "note": "delete collection vs delete database"
+    },
+    {
+      "id": "q104",
+      "text": "Does NimbusDB support full-text search?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q105",
+      "text": "If nobody uses my database, am I still charged?",
+      "expect": "hit-semantic",
+      "canonicalId": "c15"
+    },
+    {
+      "id": "q106",
+      "text": "Is there a way to estimate what NimbusDB will cost me?",
+      "expect": "hit-semantic",
+      "canonicalId": "c13"
+    },
+    {
+      "id": "q107",
+      "text": "Can I move my database to a different region?",
+      "expect": "hit-semantic",
+      "canonicalId": "c28"
+    },
+    {
+      "id": "q108",
+      "text": "What's in the free plan?",
+      "expect": "hit-semantic",
+      "canonicalId": "c12"
+    },
+    {
+      "id": "q109",
+      "text": "Which languages have official NimbusDB SDKs?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q110",
+      "text": "How do I add the NimbusDB SDK to my Node app?",
+      "expect": "hit-semantic",
+      "canonicalId": "c32"
+    },
+    {
+      "id": "q111",
+      "text": "How do I revoke a compromised API key?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q112",
+      "text": "How do I audit who accessed my NimbusDB data?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q113",
+      "text": "What's the way to connect to a NimbusDB instance?",
+      "expect": "hit-semantic",
+      "canonicalId": "c01"
+    },
+    {
+      "id": "q114",
+      "text": "How do I decide on a region?",
+      "expect": "hit-semantic",
+      "canonicalId": "c27"
+    },
+    {
+      "id": "q115",
+      "text": "What's the biggest request I can send?",
+      "expect": "hit-semantic",
+      "canonicalId": "c52"
+    },
+    {
+      "id": "q116",
+      "text": "What are the storage limits of a NimbusDB database?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q117",
+      "text": "Can I evolve my schema online?",
+      "expect": "hit-semantic",
+      "canonicalId": "c40"
+    },
+    {
+      "id": "q118",
+      "text": "How do I download my data?",
+      "expect": "hit-semantic",
+      "canonicalId": "c23"
+    },
+    {
+      "id": "q119",
+      "text": "How do I move from Postgres to NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c37"
+    },
+    {
+      "id": "q120",
+      "text": "Where do I see slow queries in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q121",
+      "text": "How does NimbusDB pricing work?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q122",
+      "text": "What's the request rate limit?",
+      "expect": "hit-semantic",
+      "canonicalId": "c51"
+    },
+    {
+      "id": "q123",
+      "text": "How long can a query run before it times out?",
+      "expect": "hit-semantic",
+      "canonicalId": "c54"
+    },
+    {
+      "id": "q124",
+      "text": "Is NimbusDB GDPR compliant?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c42"
+      ],
+      "note": "GDPR vs SOC 2/ISO"
+    },
+    {
+      "id": "q125",
+      "text": "Is it possible to change a collection's name?",
+      "expect": "hit-semantic",
+      "canonicalId": "c38"
+    },
+    {
+      "id": "q126",
+      "text": "What's the maximum size of an index key?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c52",
+        "c55"
+      ],
+      "note": "index key size vs request size / index count"
+    },
+    {
+      "id": "q127",
+      "text": "What roles can I assign to a NimbusDB API key?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q128",
+      "text": "What's the zero-downtime way to swap an API key?",
+      "expect": "hit-semantic",
+      "canonicalId": "c07"
+    },
+    {
+      "id": "q129",
+      "text": "How do I search inside arrays of documents?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c48"
+      ],
+      "note": "array queries vs full-text search"
+    },
+    {
+      "id": "q130",
+      "text": "What's the right way to paginate in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c49"
+    },
+    {
+      "id": "q131",
+      "text": "How is data encrypted in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q132",
+      "text": "How do I find documents with a filter?",
+      "expect": "hit-semantic",
+      "canonicalId": "c46"
+    },
+    {
+      "id": "q133",
+      "text": "How do I invite a teammate to my NimbusDB workspace?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q134",
+      "text": "How do I permanently remove a database?",
+      "expect": "hit-semantic",
+      "canonicalId": "c60"
+    },
+    {
+      "id": "q135",
+      "text": "Does NimbusDB support PrivateLink?",
+      "expect": "hit-semantic",
+      "canonicalId": "c44"
+    },
+    {
+      "id": "q136",
+      "text": "What counts as a write unit for billing?",
+      "expect": "hit-semantic",
+      "canonicalId": "c14"
+    },
+    {
+      "id": "q137",
+      "text": "How many indexes can one collection have?",
+      "expect": "hit-semantic",
+      "canonicalId": "c55"
+    },
+    {
+      "id": "q138",
+      "text": "What is my current bill?",
+      "expect": "guard",
+      "note": "private state"
+    },
+    {
+      "id": "q139",
+      "text": "Can I change my database's name?",
+      "expect": "hit-semantic",
+      "canonicalId": "c59"
+    },
+    {
+      "id": "q140",
+      "text": "What connection string format does NimbusDB use?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q141",
+      "text": "How big can a single document be?",
+      "expect": "hit-semantic",
+      "canonicalId": "c18"
+    },
+    {
+      "id": "q142",
+      "text": "Are aggregation pipelines supported?",
+      "expect": "hit-semantic",
+      "canonicalId": "c50"
+    },
+    {
+      "id": "q143",
+      "text": "Does the Go SDK support async calls?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c33"
+      ],
+      "note": "Go async vs Python async"
+    },
+    {
+      "id": "q144",
+      "text": "How do I move from MongoDB to NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c36"
+    },
+    {
+      "id": "q145",
+      "text": "How do I restore my database to yesterday?",
+      "expect": "hit-semantic",
+      "canonicalId": "c22"
+    },
+    {
+      "id": "q146",
+      "text": "How many clients can connect to NimbusDB at once?",
+      "expect": "hit-semantic",
+      "canonicalId": "c03"
+    },
+    {
+      "id": "q147",
+      "text": "Does NimbusDB have multi-region read replicas?",
+      "expect": "hit-semantic",
+      "canonicalId": "c29"
+    },
+    {
+      "id": "q148",
+      "text": "How long does NimbusDB retain deleted data?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q149",
+      "text": "Does NimbusDB work in serverless environments?",
+      "expect": "hit-semantic",
+      "canonicalId": "c35"
+    },
+    {
+      "id": "q150",
+      "text": "What happens to NimbusDB when traffic grows?",
+      "expect": "hit-semantic",
+      "canonicalId": "c16"
+    },
+    {
+      "id": "q151",
+      "text": "How does indexing work in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c47"
+    },
+    {
+      "id": "q152",
+      "text": "How do I change a field type across a collection?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q153",
+      "text": "Are backups copied to other regions?",
+      "expect": "hit-semantic",
+      "canonicalId": "c25"
+    },
+    {
+      "id": "q154",
+      "text": "Is there an async Python client?",
+      "expect": "hit-semantic",
+      "canonicalId": "c33"
+    },
+    {
+      "id": "q155",
+      "text": "How do I change a field's name across a collection?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c39"
+      ],
+      "note": "rename field vs change type"
+    },
+    {
+      "id": "q156",
+      "text": "What consistency guarantees does NimbusDB give?",
+      "expect": "hit-semantic",
+      "canonicalId": "c30"
+    },
+    {
+      "id": "q157",
+      "text": "My connection to NimbusDB keeps timing out, why?",
+      "expect": "hit-semantic",
+      "canonicalId": "c05"
+    },
+    {
+      "id": "q158",
+      "text": "Will NimbusDB rate-limit my requests?",
+      "expect": "hit-semantic",
+      "canonicalId": "c20"
+    },
+    {
+      "id": "q159",
+      "text": "How do backups work in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q160",
+      "text": "Is there a limit on databases per workspace?",
+      "expect": "hit-semantic",
+      "canonicalId": "c53"
+    },
+    {
+      "id": "q161",
+      "text": "Delete my database called analytics",
+      "expect": "guard",
+      "note": "imperative"
+    },
+    {
+      "id": "q162",
+      "text": "How many collections can a NimbusDB database have?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q163",
+      "text": "Cancel my subscription",
+      "expect": "guard",
+      "note": "imperative"
+    },
+    {
+      "id": "q164",
+      "text": "Which regions are cheapest?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c26",
+        "c27"
+      ],
+      "note": "pricing by region vs region list"
+    },
+    {
+      "id": "q165",
+      "text": "Can I sign in with SSO?",
+      "expect": "hit-semantic",
+      "canonicalId": "c09"
+    },
+    {
+      "id": "q166",
+      "text": "What compliance certifications does NimbusDB have?",
+      "expect": "hit-semantic",
+      "canonicalId": "c42"
+    },
+    {
+      "id": "q167",
+      "text": "Can I restrict my database to an IP allowlist?",
+      "expect": "hit-semantic",
+      "canonicalId": "c43"
+    },
+    {
+      "id": "q168",
+      "text": "How do I spin up a new database in the console?",
+      "expect": "hit-semantic",
+      "canonicalId": "c56"
+    },
+    {
+      "id": "q169",
+      "text": "What regions can I deploy NimbusDB to?",
+      "expect": "hit-semantic",
+      "canonicalId": "c26"
+    },
+    {
+      "id": "q170",
+      "text": "Can I pool connections to NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c04"
+    },
+    {
+      "id": "q171",
+      "text": "What plan is my workspace on?",
+      "expect": "guard",
+      "note": "private state"
+    },
+    {
+      "id": "q172",
+      "text": "Does NimbusDB support multi-region writes?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c29"
+      ],
+      "note": "multi-region writes vs reads"
+    },
+    {
+      "id": "q173",
+      "text": "How do I make a new API key?",
+      "expect": "hit-semantic",
+      "canonicalId": "c06"
+    },
+    {
+      "id": "q174",
+      "text": "How does retry logic work in the NimbusDB clients?",
+      "expect": "hit-semantic",
+      "canonicalId": "c34"
+    },
+    {
+      "id": "q175",
+      "text": "Can I do text search in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c48"
+    },
+    {
+      "id": "q176",
+      "text": "How do I rename a NimbusDB workspace?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c59"
+      ],
+      "note": "rename workspace vs rename database"
+    },
+    {
+      "id": "q177",
+      "text": "Do I pay for a database that's sitting idle?",
+      "expect": "hit-semantic",
+      "canonicalId": "c15"
+    },
+    {
+      "id": "q178",
+      "text": "How can I predict my monthly bill?",
+      "expect": "hit-semantic",
+      "canonicalId": "c13"
+    },
+    {
+      "id": "q179",
+      "text": "Is it possible to relocate a database to another region?",
+      "expect": "hit-semantic",
+      "canonicalId": "c28"
+    },
+    {
+      "id": "q180",
+      "text": "How do I create a database user role?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c06",
+        "c08"
+      ],
+      "note": "database role vs API key role"
+    },
+    {
+      "id": "q181",
+      "text": "How do I choose a collection name?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c38",
+        "c59"
+      ],
+      "note": "naming guidance vs rename operations"
+    },
+    {
+      "id": "q182",
+      "text": "What do I get for free with NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c12"
+    },
+    {
+      "id": "q183",
+      "text": "What languages does NimbusDB have SDKs for?",
+      "expect": "hit-semantic",
+      "canonicalId": "c31"
+    },
+    {
+      "id": "q184",
+      "text": "Rotate my API keys",
+      "expect": "guard",
+      "note": "imperative"
+    },
+    {
+      "id": "q185",
+      "text": "Installing the JS client for NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c32"
+    },
+    {
+      "id": "q186",
+      "text": "How do I disable a leaked API key?",
+      "expect": "hit-semantic",
+      "canonicalId": "c10"
+    },
+    {
+      "id": "q187",
+      "text": "How can I see who touched my data?",
+      "expect": "hit-semantic",
+      "canonicalId": "c45"
+    },
+    {
+      "id": "q188",
+      "text": "How do I connect my app to NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c01"
+    },
+    {
+      "id": "q189",
+      "text": "How do I choose a region for my NimbusDB database?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q190",
+      "text": "Maximum payload size per request?",
+      "expect": "hit-semantic",
+      "canonicalId": "c52"
+    },
+    {
+      "id": "q191",
+      "text": "Storage cap for a single database?",
+      "expect": "hit-semantic",
+      "canonicalId": "c17"
+    },
+    {
+      "id": "q192",
+      "text": "Does NimbusDB support zero-downtime schema changes?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q193",
+      "text": "Can I export my NimbusDB data?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q194",
+      "text": "How do I install the NimbusDB Python SDK?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c32"
+      ],
+      "note": "Python install vs JS install"
+    },
+    {
+      "id": "q195",
+      "text": "What's the path to migrate a Postgres database?",
+      "expect": "hit-semantic",
+      "canonicalId": "c37"
+    },
+    {
+      "id": "q196",
+      "text": "What is the latest NimbusDB SDK version?",
+      "expect": "guard",
+      "note": "time-relative"
+    },
+    {
+      "id": "q197",
+      "text": "Where can I find my slowest queries?",
+      "expect": "hit-semantic",
+      "canonicalId": "c58"
+    },
+    {
+      "id": "q198",
+      "text": "What does NimbusDB charge for?",
+      "expect": "hit-semantic",
+      "canonicalId": "c11"
+    },
+    {
+      "id": "q199",
+      "text": "hi",
+      "expect": "guard",
+      "note": "too short"
+    },
+    {
+      "id": "q200",
+      "text": "What are the NimbusDB rate limits?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q201",
+      "text": "What's the query timeout limit?",
+      "expect": "hit-semantic",
+      "canonicalId": "c54"
+    },
+    {
+      "id": "q202",
+      "text": "Can I rename a collection in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q203",
+      "text": "Which roles are available for API keys?",
+      "expect": "hit-semantic",
+      "canonicalId": "c08"
+    },
+    {
+      "id": "q204",
+      "text": "How can I rotate keys without breaking my app?",
+      "expect": "hit-semantic",
+      "canonicalId": "c07"
+    },
+    {
+      "id": "q205",
+      "text": "How do I paginate large result sets in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q206",
+      "text": "What encryption does NimbusDB use?",
+      "expect": "hit-semantic",
+      "canonicalId": "c41"
+    },
+    {
+      "id": "q207",
+      "text": "How do I query documents in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q208",
+      "text": "How do I rotate my database password?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c07"
+      ],
+      "note": "database password vs API key"
+    },
+    {
+      "id": "q209",
+      "text": "How do I add a coworker to my workspace?",
+      "expect": "hit-semantic",
+      "canonicalId": "c57"
+    },
+    {
+      "id": "q210",
+      "text": "How do I delete a NimbusDB database?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q211",
+      "text": "Can I connect without going over the public internet?",
+      "expect": "hit-semantic",
+      "canonicalId": "c44"
+    },
+    {
+      "id": "q212",
+      "text": "When is a write unit charged in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q213",
+      "text": "Is there a limit on indexes per collection?",
+      "expect": "hit-semantic",
+      "canonicalId": "c55"
+    },
+    {
+      "id": "q214",
+      "text": "How do I rename my database?",
+      "expect": "hit-semantic",
+      "canonicalId": "c59"
+    },
+    {
+      "id": "q215",
+      "text": "Format of the connection URL for NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c02"
+    },
+    {
+      "id": "q216",
+      "text": "What is the maximum document size in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q217",
+      "text": "Can NimbusDB do aggregations like group by?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q218",
+      "text": "How do I migrate from MongoDB to NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q219",
+      "text": "Can I roll back my database to an earlier point?",
+      "expect": "hit-semantic",
+      "canonicalId": "c22"
+    },
+    {
+      "id": "q220",
+      "text": "How do I migrate from DynamoDB to NimbusDB?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c36",
+        "c37"
+      ],
+      "note": "DynamoDB vs documented Mongo/Postgres migrations"
+    },
+    {
+      "id": "q221",
+      "text": "What's the max number of simultaneous connections?",
+      "expect": "hit-semantic",
+      "canonicalId": "c03"
+    },
+    {
+      "id": "q222",
+      "text": "Does NimbusDB offer multi-region reads?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q223",
+      "text": "How long are deleted databases recoverable?",
+      "expect": "hit-semantic",
+      "canonicalId": "c24"
+    },
+    {
+      "id": "q224",
+      "text": "Can I use NimbusDB from serverless functions?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q225",
+      "text": "How does NimbusDB scale under load?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q226",
+      "text": "How do I add an index to a collection?",
+      "expect": "hit-semantic",
+      "canonicalId": "c47"
+    },
+    {
+      "id": "q227",
+      "text": "Any outages today?",
+      "expect": "guard",
+      "note": "time-relative"
+    },
+    {
+      "id": "q228",
+      "text": "What's the way to convert a field type across a whole collection?",
+      "expect": "hit-semantic",
+      "canonicalId": "c39"
+    },
+    {
+      "id": "q229",
+      "text": "Can I get backups replicated cross-region?",
+      "expect": "hit-semantic",
+      "canonicalId": "c25"
+    },
+    {
+      "id": "q230",
+      "text": "Does the NimbusDB Python SDK support async?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q231",
+      "text": "Is NimbusDB strongly consistent in one region?",
+      "expect": "hit-semantic",
+      "canonicalId": "c30"
+    },
+    {
+      "id": "q232",
+      "text": "Why does my NimbusDB connection time out?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q233",
+      "text": "Do requests ever get throttled?",
+      "expect": "hit-semantic",
+      "canonicalId": "c20"
+    },
+    {
+      "id": "q234",
+      "text": "Are backups automatic in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c21"
+    },
+    {
+      "id": "q235",
+      "text": "How many databases can one workspace contain?",
+      "expect": "hit-semantic",
+      "canonicalId": "c53"
+    },
+    {
+      "id": "q236",
+      "text": "Is there a cap on collections per database?",
+      "expect": "hit-semantic",
+      "canonicalId": "c19"
+    },
+    {
+      "id": "q237",
+      "text": "Does NimbusDB support single sign-on?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q238",
+      "text": "Is NimbusDB SOC 2 certified?",
+      "expect": "hit-semantic",
+      "canonicalId": "c42"
+    },
+    {
+      "id": "q239",
+      "text": "How do I lock down access to specific IPs?",
+      "expect": "hit-semantic",
+      "canonicalId": "c43"
+    },
+    {
+      "id": "q240",
+      "text": "How do I create a database in the NimbusDB console?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q241",
+      "text": "Which regions is NimbusDB available in?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q242",
+      "text": "Is there a connection pooler in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c04"
+    },
+    {
+      "id": "q243",
+      "text": "Where do I create API keys for NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c06"
+    },
+    {
+      "id": "q244",
+      "text": "How do I export only one collection?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c23"
+      ],
+      "note": "collection export vs full export"
+    },
+    {
+      "id": "q245",
+      "text": "Do the SDKs retry failed requests?",
+      "expect": "hit-semantic",
+      "canonicalId": "c34"
+    },
+    {
+      "id": "q246",
+      "text": "Is full-text search supported?",
+      "expect": "hit-semantic",
+      "canonicalId": "c48"
+    },
+    {
+      "id": "q247",
+      "text": "Does NimbusDB charge for idle databases?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q248",
+      "text": "How do I estimate my monthly NimbusDB cost?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q249",
+      "text": "Can I move a NimbusDB database to another region?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q250",
+      "text": "What is included in the NimbusDB free tier?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q251",
+      "text": "Which official client libraries exist?",
+      "expect": "hit-semantic",
+      "canonicalId": "c31"
+    },
+    {
+      "id": "q252",
+      "text": "How do I install the NimbusDB JavaScript SDK?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q253",
+      "text": "How do I create an API key for a teammate?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c06",
+        "c57"
+      ],
+      "note": "keys are per workspace, members are per person"
+    },
+    {
+      "id": "q254",
+      "text": "A key got exposed - how do I revoke it fast?",
+      "expect": "hit-semantic",
+      "canonicalId": "c10"
+    },
+    {
+      "id": "q255",
+      "text": "Is there an audit trail for data access?",
+      "expect": "hit-semantic",
+      "canonicalId": "c45"
+    },
+    {
+      "id": "q256",
+      "text": "How do I paginate aggregation results?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c49",
+        "c50"
+      ],
+      "note": "combining two features"
+    },
+    {
+      "id": "q257",
+      "text": "How do I connect to a NimbusDB database?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q258",
+      "text": "Which region should I pick for my database?",
+      "expect": "hit-semantic",
+      "canonicalId": "c27"
+    },
+    {
+      "id": "q259",
+      "text": "What is the maximum request size in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q260",
+      "text": "How much data can one NimbusDB database hold?",
+      "expect": "hit-semantic",
+      "canonicalId": "c17"
+    },
+    {
+      "id": "q261",
+      "text": "How do I do schema changes without downtime?",
+      "expect": "hit-semantic",
+      "canonicalId": "c40"
+    },
+    {
+      "id": "q262",
+      "text": "Can I export all my data out of NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c23"
+    },
+    {
+      "id": "q263",
+      "text": "Can I use NimbusDB from a browser directly?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c35"
+      ],
+      "note": "browser direct vs serverless functions"
+    },
+    {
+      "id": "q264",
+      "text": "How do I migrate from Postgres to NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q265",
+      "text": "How much storage does one document use?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c18"
+      ],
+      "note": "actual usage vs size limit"
+    },
+    {
+      "id": "q266",
+      "text": "How do I see which queries are slow?",
+      "expect": "hit-semantic",
+      "canonicalId": "c58"
+    },
+    {
+      "id": "q267",
+      "text": "How is NimbusDB billed?",
+      "expect": "hit-semantic",
+      "canonicalId": "c11"
+    },
+    {
+      "id": "q268",
+      "text": "How many requests per second can I make?",
+      "expect": "hit-semantic",
+      "canonicalId": "c51"
+    },
+    {
+      "id": "q269",
+      "text": "What is the query timeout in NimbusDB?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q270",
+      "text": "Can I rename a collection?",
+      "expect": "hit-semantic",
+      "canonicalId": "c38"
+    },
+    {
+      "id": "q271",
+      "text": "What permission levels can an API key have?",
+      "expect": "hit-semantic",
+      "canonicalId": "c08"
+    },
+    {
+      "id": "q272",
+      "text": "How do I rotate an API key without downtime?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q273",
+      "text": "How many API keys can a workspace have?",
+      "expect": "miss",
+      "forbidCanonicalIds": [
+        "c53"
+      ],
+      "note": "key count vs database count"
+    },
+    {
+      "id": "q274",
+      "text": "How do I page through a big result set?",
+      "expect": "hit-semantic",
+      "canonicalId": "c49"
+    },
+    {
+      "id": "q275",
+      "text": "Is my data encrypted in NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c41"
+    },
+    {
+      "id": "q276",
+      "text": "What's the syntax for querying documents?",
+      "expect": "hit-semantic",
+      "canonicalId": "c46"
+    },
+    {
+      "id": "q277",
+      "text": "Inviting a teammate to NimbusDB?",
+      "expect": "hit-semantic",
+      "canonicalId": "c57"
+    },
+    {
+      "id": "q278",
+      "text": "What's the process for deleting a database?",
+      "expect": "hit-semantic",
+      "canonicalId": "c60"
+    },
+    {
+      "id": "q279",
+      "text": "Does NimbusDB support private networking?",
+      "expect": "hit-exact"
+    },
+    {
+      "id": "q280",
+      "text": "When do I get charged a write unit?",
+      "expect": "hit-semantic",
+      "canonicalId": "c14"
+    }
+  ]
+}

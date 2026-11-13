@@ -32,8 +32,26 @@ test('calibrated policy: probability rises with similarity and margin', () => {
   const high = calibratedP(weights, { ...base, sim1: 1 });
   assert.ok(low < mid && mid < high);
   // margin contributes positively
-  const noMargin = calibratedP(weights, { sim1: 0, sim2: 0, cacheSize: 10, queryTokens: 5 });
-  assert.ok(calibratedP(weights, { sim1: 0, sim2: null, cacheSize: 10, queryTokens: 5 }) > noMargin);
+  const noMargin = calibratedP(weights, { sim1: 0.5, sim2: 0.5, cacheSize: 10, queryTokens: 5 });
+  assert.ok(calibratedP(weights, { sim1: 0.5, sim2: 0.1, cacheSize: 10, queryTokens: 5 }) > noMargin);
+});
+
+test('calibrated policy: a missing runner-up is mean-imputed, never an extreme margin', () => {
+  // A single-entry cache has no sim2. The margin feature must contribute
+  // zero (training-mean imputation): with a negative fitted margin
+  // coefficient - which hard-negative-heavy workloads can produce - an
+  // extreme "perfect margin" stand-in would veto every genuine hit.
+  const weights: CalibrationWeights = {
+    means: [0.78, 0.03, 4.1, 7.4],
+    stds: [0.11, 0.045, 1, 1.5],
+    coef: [1.6, -0.23, 0, 0.24],
+    bias: 0.07,
+    fittedOn: { pairs: 0, method: 'test' },
+  };
+  const uncontested = calibratedP(weights, { sim1: 0.98, sim2: null, cacheSize: 1, queryTokens: 8 });
+  const imputed = calibratedP(weights, { sim1: 0.98, sim2: 0.98 - 0.03, cacheSize: 1, queryTokens: 8 });
+  assert.equal(uncontested, imputed);
+  assert.ok(uncontested > 0.9, `uncontested near-duplicate should score high, got ${uncontested}`);
 });
 
 test('calibrated policy operating point from cost multiple', () => {

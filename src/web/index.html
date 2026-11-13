@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://huggingface.co https://cdn-lfs.huggingface.co https://cdn-lfs-us-1.huggingface.co; img-src 'self' data:; worker-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="description" content="semcache - a semantic caching layer with a calibrated hit policy. Live demo running entirely in your browser.">
+<title>semcache - cache by meaning, not by string</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">≈</span>
+      <span class="brand-name">semcache</span>
+      <span class="brand-sub">semantic caching layer</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="console">Console</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="workload">Workload</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="thresholds">Thresholds</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="gallery">Near-misses</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="method">Method</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="lede">
+    <h1>Cache LLM answers by meaning.<br>Serve a wrong one <em>never</em>.</h1>
+    <p class="lede-sub">
+      Exact-match caching misses every rephrased question; naive similarity caching serves
+      confident wrong answers. semcache embeds each query, looks up its nearest cached entry,
+      and lets a <strong>calibrated hit policy</strong> - not a magic threshold - decide whether
+      serving is worth the risk. Everything below runs locally in your browser against a
+      simulated helpdesk backend. No API keys, no servers, nothing leaves the page.
+    </p>
+    <p class="lede-meta" id="boot-stats">loading…</p>
+  </section>
+
+  <!-- ======================= CONSOLE ======================= -->
+  <section id="tab-console" class="panel is-active" role="tabpanel">
+    <div class="panel-grid">
+      <div class="panel-left">
+        <h2 class="panel-title">Query console</h2>
+        <p class="panel-note">Ask the simulated NimbusDB helpdesk. Ask again - or rephrase - and watch the cache decide.</p>
+        <form id="query-form">
+          <label class="field-label" for="query-input">Question</label>
+          <textarea id="query-input" rows="3" spellcheck="false" placeholder="e.g. How do I rotate an API key without downtime?"></textarea>
+          <div class="form-row">
+            <div class="policy-picker" role="group" aria-label="Hit policy">
+              <label class="field-label" for="policy-select">Hit policy</label>
+              <select id="policy-select">
+                <option value="calibrated" selected>calibrated (cost-derived p*)</option>
+                <option value="fixed">fixed threshold</option>
+                <option value="margin">threshold + margin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn" id="query-submit">Run query</button>
+          </div>
+        </form>
+        <div class="chips" aria-label="Try one of these">
+          <button class="chip" data-q="How do I rotate an API key without downtime?">rotate keys</button>
+          <button class="chip" data-q="What's the zero-downtime way to swap an API key?">…rephrased</button>
+          <button class="chip" data-q="How do I delete a collection in NimbusDB?">near-miss trap</button>
+          <button class="chip" data-q="What is my current bill?">guard: private state</button>
+          <button class="chip" data-q="Is NimbusDB down right now?">guard: time-relative</button>
+        </div>
+        <div id="model-status" class="model-status" hidden></div>
+      </div>
+      <div class="panel-right">
+        <div id="decision-card" class="decision is-empty">
+          <p class="decision-empty">Run a query to see the decision trace.</p>
+        </div>
+        <div class="spend" id="spend-card" hidden>
+          <div class="spend-row"><span>cache path spend</span><span class="mono" id="spend-cache">$0.000000</span></div>
+          <div class="spend-row"><span>no-cache baseline</span><span class="mono" id="spend-baseline">$0.000000</span></div>
+          <div class="spend-row is-total"><span>saved</span><span class="mono" id="spend-saved">$0.000000</span></div>
+          <p class="spend-note">illustrative pricing - see Method</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= WORKLOAD ======================= -->
+  <section id="tab-workload" class="panel" role="tabpanel" hidden>
+    <div class="panel-grid">
+      <div class="panel-left">
+        <h2 class="panel-title">Workload replay</h2>
+        <p class="panel-note">
+          280 labeled helpdesk queries - exact repeats, paraphrases, near-miss traps,
+          un-cacheable questions - replayed against a fresh cache, with the no-cache
+          baseline measured alongside.
+        </p>
+        <div class="form-row">
+          <div class="policy-picker">
+            <label class="field-label" for="replay-policy-select">Hit policy</label>
+            <select id="replay-policy-select">
+              <option value="calibrated" selected>calibrated (cost-derived p*)</option>
+              <option value="fixed">fixed threshold</option>
+              <option value="margin">threshold + margin</option>
+            </select>
+          </div>
+          <button class="btn" id="replay-run">Run replay</button>
+        </div>
+        <div id="replay-summary" class="replay-summary" hidden></div>
+      </div>
+      <div class="panel-right">
+        <div class="feed-head mono" id="feed-counters" hidden></div>
+        <ol id="event-feed" class="event-feed" aria-live="polite"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= THRESHOLDS ======================= -->
+  <section id="tab-thresholds" class="panel" role="tabpanel" hidden>
+    <h2 class="panel-title">The threshold is a product decision</h2>
+    <p class="panel-note">
+      Every point below is a full replay of the same 280-query workload. Fixed thresholds sweep
+      &tau;; the calibrated policy sweeps its cost-derived operating point p*. Watch where the
+      wrong-hit rate (amber) crosses zero - and what each choice costs in recall.
+    </p>
+    <button class="btn" id="sweep-run">Compute the curves</button>
+    <div class="curves">
+      <div class="curve-box">
+        <h3>Precision vs recall</h3>
+        <canvas id="pr-canvas" width="640" height="420"></canvas>
+      </div>
+      <div class="curve-box">
+        <h3>Wrong-hit rate</h3>
+        <canvas id="wh-canvas" width="640" height="420"></canvas>
+      </div>
+    </div>
+    <div id="sweep-table" class="sweep-table" hidden></div>
+  </section>
+
+  <!-- ======================= GALLERY ======================= -->
+  <section id="tab-gallery" class="panel" role="tabpanel" hidden>
+    <h2 class="panel-title">Near-miss gallery</h2>
+    <p class="panel-note">
+      Questions that <em>look</em> like a cached question but need a different answer. Left: what a
+      common default (&tau;&nbsp;=&nbsp;0.85) does. Right: the calibrated policy. Every row is from the
+      same replay; nothing is cherry-picked after the fact.
+    </p>
+    <button class="btn" id="gallery-run">Compare on near-misses</button>
+    <div id="gallery-table" class="gallery-table"></div>
+  </section>
+
+  <!-- ======================= METHOD ======================= -->
+  <section id="tab-method" class="panel" role="tabpanel" hidden>
+    <h2 class="panel-title">Method, and what to distrust</h2>
+    <div class="method-body" id="method-body"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>semcache runs entirely in this page: embeddings by bge-small-en-v1.5 (pinned revision, ONNX/wasm),
+  backend simulated from documentation. Source and numbers: see the repository.</p>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
