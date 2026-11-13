@@ -79,7 +79,7 @@ async function doInit(): Promise<Boot> {
 
   // dev-fold quality of the calibration fit, computed live from the artifact
   const pairsRaw = (await loadJson('./data/helpdesk/pairs.json')) as {
-    dev: Array<{ a: string; b: string; same: 0 | 1 }>;
+    dev: Array<{ a: string; b: string; same: 0 | 1; groupId: string }>;
   };
   const scored: Array<{ p: number; label: 0 | 1 }> = [];
   for (const pair of pairsRaw.dev) {
@@ -87,7 +87,10 @@ async function doInit(): Promise<Boot> {
     const [aVec, bVec] = await embedder.embed([pair.a, pair.b]);
     let sim2 = -1;
     for (const c of canonicals) {
-      if (c.question === pair.b) continue;
+      // Exclude the pair's OWN canonical (groupId), matching the fitting
+      // script exactly: pair.b is usually a paraphrase, so a text match
+      // would fail to exclude it and inflate the runner-up similarity.
+      if (c.id === pair.groupId) continue;
       const [cVec] = await embedder.embed([c.question]);
       const dotp = aVec!.reduce((acc, x, i) => acc + x * cVec![i]!, 0);
       if (dotp > sim2) sim2 = dotp;

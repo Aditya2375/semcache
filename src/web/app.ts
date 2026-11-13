@@ -334,7 +334,7 @@ function drawAxes(ctx: CanvasRenderingContext2D, w: number, h: number, xLabel: s
   ctx.font = '11px ui-monospace, monospace';
   const padL = 44;
   const padB = 34;
-  const padT = 14;
+  const padT = 26;
   const padR = 14;
   ctx.beginPath();
   ctx.moveTo(padL, padT);
@@ -351,7 +351,7 @@ function drawAxes(ctx: CanvasRenderingContext2D, w: number, h: number, xLabel: s
     ctx.stroke();
   }
   ctx.fillText(xLabel, w / 2 - ctx.measureText(xLabel).width / 2, h - 8);
-  ctx.fillText(yLabel, 8, padT - 2);
+  ctx.fillText(yLabel, 8, padT - 14);
 }
 
 function plotCurve(
@@ -363,7 +363,7 @@ function plotCurve(
 ): void {
   const padL = 44;
   const padB = 34;
-  const padT = 14;
+  const padT = 26;
   const padR = 14;
   const X = (v: number) => padL + v * (w - padL - padR);
   const Y = (v: number) => padT + (1 - v) * (h - padT - padB);

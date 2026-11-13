@@ -8,7 +8,7 @@ no API keys, no account.
 **Live demo: https://aditya2375.github.io/semcache/**
 
 The demo replays a labeled 280-query workload against a fictional helpdesk
-backend (NimbusDB) and shows, for five hit policies side by side, the three
+backend (NimbusDB) and shows, for every hit policy it ships, the three
 numbers that decide whether a semantic cache is safe to turn on: hit
 precision, hit recall, and the wrong-hit rate - each with a 95% Wilson
 confidence interval, because a rate without its interval is a marketing
