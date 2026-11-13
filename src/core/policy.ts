@@ -103,7 +103,7 @@ export function calibratedP(weights: CalibrationWeights, ctx: PolicyContext): nu
   ];
   let z = weights.bias;
   for (let i = 0; i < 4; i++) {
-    const std = weights.stds[i]! === 0 ? 1 : weights.stds[i]!;
+    const std = weights.stds[i]! < 1e-9 ? 1 : weights.stds[i]!;
     z += weights.coef[i]! * ((feats[i]! - weights.means[i]!) / std);
   }
   return sigmoid(z);

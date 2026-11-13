@@ -36,3 +36,23 @@ test('fitLogistic is deterministic for a fixed seed', () => {
 test('fitLogistic rejects tiny datasets', () => {
   assert.throws(() => fitLogistic(separableSamples(10, 1)));
 });
+
+test('constant features are frozen: std reported 1, coefficient pinned 0, no explosion at inference', () => {
+  const rng = mulberry32(11);
+  const samples: FitSample[] = [];
+  for (let i = 0; i < 60; i++) {
+    const label = i % 2 === 0 ? 1 : 0;
+    samples.push({
+      features: [label === 1 ? 0.85 + rng() * 0.1 : 0.3 + rng() * 0.2, rng() * 0.4, Math.log1p(60), 7],
+      label: label as 0 | 1,
+    });
+  }
+  const w = fitLogistic(samples, { seed: 5 });
+  assert.equal(w.stds[2], 1, 'degenerate feature std must be reported as 1');
+  assert.equal(w.coef[2], 0, 'degenerate feature coefficient must stay 0');
+  // inference far from the training constant must not explode
+  const p = calibratedP(w, { sim1: 0.5, sim2: 0.3, cacheSize: 100_000, queryTokens: 7 });
+  assert.ok(Number.isFinite(p) && p >= 0 && p <= 1, `p must stay finite, got ${p}`);
+  const p2 = calibratedP(w, { sim1: 0.5, sim2: 0.3, cacheSize: 2, queryTokens: 7 });
+  assert.ok(Number.isFinite(p2) && p2 >= 0 && p2 <= 1);
+});

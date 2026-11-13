@@ -40,9 +40,18 @@ export function fitLogistic(samples: FitSample[], opts: FitOptions = {}): Calibr
   const stds: [number, number, number, number] = [0, 0, 0, 0];
   for (const s of samples) for (let i = 0; i < 4; i++) means[i]! += s.features[i]! / samples.length;
   for (const s of samples) for (let i = 0; i < 4; i++) stds[i]! += (s.features[i]! - means[i]!) ** 2 / samples.length;
-  for (let i = 0; i < 4; i++) stds[i] = Math.sqrt(stds[i]!) || 1;
+  // zero-variance features leave float-noise variances (~1e-31); a truthiness
+  // check would keep 2e-16 as a 'std' and explode at inference - use a floor
+  const live: boolean[] = [];
+  for (let i = 0; i < 4; i++) {
+    const std = Math.sqrt(stds[i]!);
+    live.push(std >= 1e-6);
+    stds[i] = std >= 1e-6 ? std : 1;
+  }
 
-  const xs = samples.map((s) => s.features.map((f, i) => (f - means[i]!) / stds[i]!) as [number, number, number, number]);
+  const xs = samples.map((s) =>
+    s.features.map((f, i) => (live[i]! ? (f - means[i]!) / stds[i]! : 0)) as [number, number, number, number],
+  );
   const ys = samples.map((s) => s.label);
   const coef: [number, number, number, number] = [0, 0, 0, 0];
   let bias = 0;
@@ -61,7 +70,7 @@ export function fitLogistic(samples: FitSample[], opts: FitOptions = {}): Calibr
       let z = bias;
       for (let i = 0; i < 4; i++) z += coef[i]! * x[i]!;
       const err = sigmoid(z) - ys[idx]!;
-      for (let i = 0; i < 4; i++) coef[i]! -= lr * (err * x[i]! + l2 * coef[i]!);
+      for (let i = 0; i < 4; i++) if (live[i]!) coef[i]! -= lr * (err * x[i]! + l2 * coef[i]!);
       bias -= lr * err;
     }
   }
