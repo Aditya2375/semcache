@@ -57,7 +57,11 @@ let composite: CompositeEmbedder;
 let consoleCache: SemanticCache<CachedValue> | null = null;
 let consoleSpend = { lookupUsd: 0, generationUsd: 0, baselineUsd: 0 };
 
+// Callers pass only the fixed relative data URLs below (compile-time
+// literals); loadJson never sees user input.
 async function loadJson(url: string): Promise<unknown> {
+  // nosemgrep: no-unsafe-url-fetch -- url is always one of the five fixed
+  // ./data/ literals at the call sites below; no user-built strings.
   const res = await fetch(url);
   if (!res.ok) throw new Error(`fetch ${url}: ${res.status}`);
   return res.json();
